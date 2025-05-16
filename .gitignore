@@ -1,0 +1,23 @@
+
+# Archivos de base de datos
+*.sqlite3
+db.sqlite3
+
+# Archivos y carpetas temporales de Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Archivos temporales de sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de migraciones de backup
+*.bak
+
+# Archivos de subida de Django (opcional si tienes media local)
+media/
+
+# Archivos de configuración de tu editor
+.vscode/
+.idea/

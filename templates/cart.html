@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de productos en el carrito{% endblock %}
+
+{% block content %}
+
+<section class="container mt-5">
+    <h2 class="mb-4">Tu Carrito</h2>
+    {% if order_items %}
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="thead-light">
+            <tr>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Precio Unitario</th>
+              <th>Impuestos</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in order_items %}
+            <tr>
+              <td>
+                {% if item.product.image %}
+                  <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="height:40px; width:auto; margin-right:8px;">
+                {% endif %}
+                {{ item.product.name }}
+              </td>
+              <td>{{ item.quantity }}</td>
+              <td>${{ item.unit_price|floatformat:2 }}</td>
+              <td>${{ item.get_tax_amount|floatformat:2 }}</td>
+              <td>${{ item.get_total_price|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          <tfoot>
+            <tr>
+              <th colspan="4" class="text-right">Total:</th>
+              <th>${{ order.get_total|floatformat:2 }}</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <form method="post" action="{% url 'orders:close_order' order.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success btn-block mt-3">
+          Cerrar Orden <i class="fa fa-lock"></i>
+        </button>
+      </form>
+    {% else %}
+      <div class="alert alert-info text-center">
+        Tu carrito está vacío.
+      </div>
+    {% endif %}
+  </section>
+{% endblock %}

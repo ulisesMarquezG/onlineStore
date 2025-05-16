@@ -1,0 +1,25 @@
+{# templates/registration/login.html #}
+{% extends 'base.html' %}
+{% block title %}Iniciar sesión{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center align-items-center" style="min-height:60vh;">
+  <div class="col-md-6 col-lg-4">
+    <div class="card shadow-sm">
+      <div class="card-header bg-primary text-white text-center">
+        <h4 class="mb-0">Iniciar Sesión</h4>
+      </div>
+      <div class="card-body">
+        <form method="post" novalidate>
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+        </form>
+      </div>
+      <div class="card-footer text-center">
+        ¿No tienes cuenta? <a href="{% url 'register' %}">Regístrate aquí</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
