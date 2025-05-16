@@ -1,79 +1,73 @@
-Tienda Virtual - Django 1.11 / Python 2.7
+# Tienda Virtual Django (Python 2.7)
 
-=========================================
-DESCRIPCIÓN GENERAL
-=========================================
-Este proyecto implementa una tienda virtual simple con las siguientes funcionalidades principales:
+Este proyecto implementa una tienda virtual básica usando Django 1.11 y Python 2.7. Permite a los usuarios registrarse, iniciar sesión, agregar productos al carrito, calcular impuestos y confirmar órdenes.
 
-- Registro e inicio de sesión de usuarios (solo usuarios autenticados pueden comprar).
-- Listado de productos (con imágenes y control de stock).
-- Carrito de compras: cada usuario puede agregar productos y cantidades a su propio carrito.
-- Gestión de órdenes: al confirmar la orden, el carrito se cierra y no puede ser modificado.
-- Cálculo de impuestos según el tipo de producto.
-- Mensajes informativos y de error al usuario (sin stock, éxito de compra, etc).
+---
 
-Todo el sistema es compatible con Python 2.7 y Django 1.11, **sin uso de librerías externas** (solo las de Python y Django).
+## Requisitos
 
-=========================================
-REQUISITOS
-=========================================
 - Python 2.7.x
-- Django 1.11.x (se instala automáticamente con requirements.txt)
-- SQLite (por defecto, o tu gestor compatible con Django)
+- Django 1.11.x  
+- No se requieren librerías externas adicionales.
+- (Opcional) SQLite3 para desarrollo rápido (configuración por defecto de Django).
 
-=========================================
-INSTALACIÓN Y USO
-=========================================
+---
 
-1. **(Recomendado) Crear el entorno virtual FUERA del proyecto:**
+## Estructura de Archivos
 
-    $ cd /ruta/donde/guardar/entorno
-    $ virtualenv venv -p python2.7
-    $ source venv/bin/activate
+- **main/**: Aplicación principal (home, landing, etc.).
+- **orders/**: Lógica del carrito, órdenes y productos.
+- **media/**: Carpeta donde se almacenan las imágenes de productos (se ignora en Git).
+- **requirements.txt**: Dependencias del proyecto.
+- **seed_products.py**: Comando para cargar productos de ejemplo.
+- **README.md**: Este archivo.
+- **manage.py**: Comando de utilidad Django.
 
-2. **Entrar a la carpeta del proyecto:**
+---
 
-    $ cd /ruta/del/proyecto/onlineStore
+## Instalación y Ejecución
 
-3. **Instalar las dependencias:**
+1. Crear entorno virtual (recomendado):  
+   virtualenv venv -p python2.7  
+   source venv/bin/activate
 
-    $ pip install -r requirements.txt
+2. Instalar dependencias:  
+   pip install -r requirements.txt
 
-4. **Aplicar migraciones:**
+3. Aplicar migraciones:  
+   python manage.py makemigrations  
+   python manage.py migrate
 
-    $ python manage.py makemigrations
-    $ python manage.py migrate
+4. Poblar la base de datos con productos de ejemplo:  
+   python manage.py seed_products
 
-5. **Poblar productos de ejemplo (ejecutar el comando seed):**
+5. Crear un superusuario (opcional, para el admin de Django):  
+   python manage.py createsuperuser
 
-    $ python manage.py seed_products
+6. Levantar el servidor de desarrollo:  
+   python manage.py runserver
 
-6. **(Opcional) Crear un superusuario para administrar:**
+7. Abrir la tienda en el navegador:  
+   http://localhost:8000/
 
-    $ python manage.py createsuperuser
+---
 
-7. **Levantar el servidor:**
+## Características Principales
 
-    $ python manage.py runserver
+- Registro e inicio de sesión de usuarios.
+- Listado de productos con imágenes y control de stock.
+- Solo usuarios autenticados pueden agregar productos al carrito y confirmar órdenes.
+- Mensajes amigables de éxito y error (por ejemplo, “sin stock”, “debes iniciar sesión”).
+- Cálculo de impuestos automático según tipo de producto (libros, electrónicos, ropa).
+- Panel de administración de Django (`/admin`).
+- Poblado de productos demo usando el comando custom seed_products.
 
-8. **Acceder en el navegador:**
+---
 
-    http://localhost:8000/
+## Notas Importantes
 
-=========================================
-NOTAS Y SUGERENCIAS
-=========================================
-- El archivo `requirements.txt` se encuentra en la raíz del proyecto y debe ser usado para instalar las dependencias.
-- El entorno virtual debe estar siempre **fuera** de la carpeta del proyecto para evitar mezclar archivos y accidentalmente subirlos a repositorios.
-- Puedes crear productos de prueba desde el panel de administración (`/admin`) o ejecutando el comando `python manage.py seed_products`.
-- Solo los usuarios autenticados pueden agregar productos al carrito y cerrar órdenes.
-- El stock se controla automáticamente; si no hay suficientes existencias, se mostrará un mensaje y no se permitirá la compra.
-- El sistema muestra los impuestos calculados para cada producto según su tipo (libro, electrónico, ropa).
-- Las rutas principales están en las apps `main` y `orders`. El registro y login usan los views y templates integrados de Django.
-
-=========================================
-AUTORES / CONTACTO
-=========================================
-Proyecto desarrollado como práctica para gestión básica de e-commerce en Django.
-Puedes contactarme en: [tu-email@ejemplo.com]
-
+- No subas la carpeta `media/` ni archivos de base de datos (`db.sqlite3`) al repositorio.  
+  Usa `.gitignore` para asegurarte de esto.
+- El entorno virtual debe crearse fuera de la carpeta del proyecto si vas a compartirlo.
+- Compatible solo con Python 2.7 y Django 1.11.
+- Si necesitas reiniciar la base de
