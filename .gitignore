@@ -1,3 +1,5 @@
+# migraciones
+*/migrations/*.py
 
 # Archivos de base de datos
 *.sqlite3

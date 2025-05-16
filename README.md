@@ -66,3 +66,5 @@ Este proyecto implementa una tienda virtual básica usando Django 1.11 y Python 
 ## Notas Importantes
 
 - Dentro del proyecto se encuentra una imagen del diagrama de flujo y tambien el diagrama en formato drawio
+- Si deseas consultar el reporte de ordenes puedes ir a /admin/orders/order/ y en el selec de acciones seleccionar la opcion que dice Exportar ordenes confirmadas 
+   (seleccionando todas de todos modos hara el filtro para las confirmadas.)
