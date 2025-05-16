@@ -16,6 +16,7 @@
               <th>Precio Unitario</th>
               <th>Impuestos</th>
               <th>Subtotal</th>
+              <th>Eliminar</th>
             </tr>
           </thead>
           <tbody>
@@ -31,6 +32,14 @@
               <td>${{ item.unit_price|floatformat:2 }}</td>
               <td>${{ item.get_tax_amount|floatformat:2 }}</td>
               <td>${{ item.get_total_price|floatformat:2 }}</td>
+              <td>
+                <form method="post" action="{% url 'orders:delete_cart_item' item.id %}" style="display:inline;">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar este producto del carrito?')">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </form>
+              </td>
             </tr>
             {% endfor %}
           </tbody>

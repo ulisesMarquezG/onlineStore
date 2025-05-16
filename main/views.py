@@ -9,15 +9,8 @@ from .forms import RegisterForm
 from orders.models import *
 
 def home(request):
-    usuario = request.user if request.user.is_authenticated else "invitado"
     products = Product.objects.filter(stock__gt=0)
     return render(request, "home.html", locals())
-
-
-def logout_user(request):
-    logout(request)
-    return HttpResponseRedirect(reverse("home"))
-
 
 
 def register(request):

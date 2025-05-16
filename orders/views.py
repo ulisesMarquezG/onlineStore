@@ -43,6 +43,12 @@ def add_to_cart(request, product_id):
         return redirect('home') 
     return redirect('home')
 
+@login_required
+def delete_cart_item(request, item_id):
+    order_item = get_object_or_404(OrderItem, pk=item_id, order__user=request.user, order__status='cart')
+    order_item.delete()
+    return redirect('orders:cart')
+
 @login_required(login_url='/accounts/login/')
 def cart(request):
     order = Order.objects.filter(user=request.user, status='cart').first()
