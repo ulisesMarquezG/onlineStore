@@ -17,7 +17,6 @@ Este proyecto implementa una tienda virtual básica usando Django 1.11 y Python 
 
 - **main/**: Aplicación principal (home, landing, etc.).
 - **orders/**: Lógica del carrito, órdenes y productos.
-- **media/**: Carpeta donde se almacenan las imágenes de productos (se ignora en Git).
 - **requirements.txt**: Dependencias del proyecto.
 - **seed_products.py**: Comando para cargar productos de ejemplo.
 - **README.md**: Este archivo.
@@ -27,7 +26,7 @@ Este proyecto implementa una tienda virtual básica usando Django 1.11 y Python 
 
 ## Instalación y Ejecución
 
-1. Crear entorno virtual (recomendado):  
+1. Crear entorno virtual:  
    virtualenv venv -p python2.7  
    source venv/bin/activate
 
@@ -66,8 +65,4 @@ Este proyecto implementa una tienda virtual básica usando Django 1.11 y Python 
 
 ## Notas Importantes
 
-- No subas la carpeta `media/` ni archivos de base de datos (`db.sqlite3`) al repositorio.  
-  Usa `.gitignore` para asegurarte de esto.
-- El entorno virtual debe crearse fuera de la carpeta del proyecto si vas a compartirlo.
-- Compatible solo con Python 2.7 y Django 1.11.
-- Si necesitas reiniciar la base de
+- Dentro del proyecto se encuentra una imagen del diagrama de flujo y tambien el diagrama en formato drawio
